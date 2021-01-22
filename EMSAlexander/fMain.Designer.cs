@@ -31,13 +31,14 @@ namespace EMSAlexander
         {
             this.components = new System.ComponentModel.Container();
             this.dgvVisitList = new System.Windows.Forms.DataGridView();
-            this.dgvtbcFIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvtbcComingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lCurrentTime = new System.Windows.Forms.Label();
             this.lCurrentDate = new System.Windows.Forms.Label();
             this.tTimer = new System.Windows.Forms.Timer(this.components);
             this.tbBarcode = new System.Windows.Forms.TextBox();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
+            this.dgvtbcFIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtbcComingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtbcDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVisitList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,27 +49,14 @@ namespace EMSAlexander
             this.dgvVisitList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVisitList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvtbcFIO,
-            this.dgvtbcComingTime});
+            this.dgvtbcComingTime,
+            this.dgvtbcDate});
             this.dgvVisitList.Location = new System.Drawing.Point(12, 42);
             this.dgvVisitList.Name = "dgvVisitList";
             this.dgvVisitList.ReadOnly = true;
             this.dgvVisitList.RowTemplate.Height = 25;
             this.dgvVisitList.Size = new System.Drawing.Size(548, 277);
             this.dgvVisitList.TabIndex = 0;
-            // 
-            // dgvtbcFIO
-            // 
-            this.dgvtbcFIO.HeaderText = "ФИО сотрудника";
-            this.dgvtbcFIO.Name = "dgvtbcFIO";
-            this.dgvtbcFIO.ReadOnly = true;
-            this.dgvtbcFIO.Width = 350;
-            // 
-            // dgvtbcComingTime
-            // 
-            this.dgvtbcComingTime.HeaderText = "Время прихода";
-            this.dgvtbcComingTime.Name = "dgvtbcComingTime";
-            this.dgvtbcComingTime.ReadOnly = true;
-            this.dgvtbcComingTime.Width = 150;
             // 
             // lCurrentTime
             // 
@@ -104,6 +92,27 @@ namespace EMSAlexander
             this.tbBarcode.TabIndex = 3;
             this.tbBarcode.TextChanged += new System.EventHandler(this.tbBarcode_TextChanged);
             // 
+            // dgvtbcFIO
+            // 
+            this.dgvtbcFIO.HeaderText = "ФИО сотрудника";
+            this.dgvtbcFIO.Name = "dgvtbcFIO";
+            this.dgvtbcFIO.ReadOnly = true;
+            this.dgvtbcFIO.Width = 350;
+            // 
+            // dgvtbcComingTime
+            // 
+            this.dgvtbcComingTime.HeaderText = "Время прихода";
+            this.dgvtbcComingTime.Name = "dgvtbcComingTime";
+            this.dgvtbcComingTime.ReadOnly = true;
+            this.dgvtbcComingTime.Width = 75;
+            // 
+            // dgvtbcDate
+            // 
+            this.dgvtbcDate.HeaderText = "Дата";
+            this.dgvtbcDate.Name = "dgvtbcDate";
+            this.dgvtbcDate.ReadOnly = true;
+            this.dgvtbcDate.Width = 75;
+            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -130,10 +139,11 @@ namespace EMSAlexander
         private System.Windows.Forms.Label lCurrentTime;
         private System.Windows.Forms.Label lCurrentDate;
         private System.Windows.Forms.Timer tTimer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtbcFIO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtbcComingTime;
         private System.Windows.Forms.TextBox tbBarcode;
         private System.Windows.Forms.SaveFileDialog sfdExport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtbcFIO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtbcComingTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtbcDate;
     }
 }
 
