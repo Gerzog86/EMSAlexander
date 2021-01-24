@@ -27,7 +27,7 @@ namespace EMSAlexander
 
         static private Dictionary<long, Person> barcodes = new Dictionary<long, Person>();
 
-        public static void LoadPersonnel ()
+        public static void LoadPersonnel()
         {
             StreamReader sr = new StreamReader("Personnel" + "\\" + "barcodes.txt");
             while (!sr.EndOfStream)
@@ -39,6 +39,13 @@ namespace EMSAlexander
             foreach (Person i in barcodes.Values)
             {
                 i.LoadAll();
+            }
+        }
+        public static void SavePersonnel()
+        {
+            foreach (Person i in barcodes.Values)
+            {
+                i.SaveAll();
             }
         }
 

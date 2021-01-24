@@ -80,5 +80,10 @@ namespace EMSAlexander
         {
             ExportReport(directory + "\"" + filename);
         }
+
+        private void fMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Personnel.SavePersonnel();
+        }
     }
 }

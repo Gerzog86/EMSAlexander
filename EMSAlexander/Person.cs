@@ -105,9 +105,12 @@ namespace EMSAlexander
         public void SaveInDates ()
         {
             StreamWriter sw = new StreamWriter(filepath_in);
-            foreach (DateTime i in gointimes)
+            if (gointimes.Count > 0)
             {
-                sw.WriteLine(i);
+                foreach (DateTime i in gointimes)
+                {
+                    sw.WriteLine(i);
+                }
             }
             sw.Close();
         }

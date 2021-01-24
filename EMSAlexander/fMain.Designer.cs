@@ -31,15 +31,15 @@ namespace EMSAlexander
         {
             this.components = new System.ComponentModel.Container();
             this.dgvVisitList = new System.Windows.Forms.DataGridView();
+            this.dgvtbcFIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtbcInTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtbcOutTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtbcDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lCurrentTime = new System.Windows.Forms.Label();
             this.lCurrentDate = new System.Windows.Forms.Label();
             this.tTimer = new System.Windows.Forms.Timer(this.components);
             this.tbBarcode = new System.Windows.Forms.TextBox();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
-            this.dgvtbcFIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvtbcInTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvtbcOutTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvtbcDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVisitList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,6 +59,34 @@ namespace EMSAlexander
             this.dgvVisitList.RowTemplate.Height = 25;
             this.dgvVisitList.Size = new System.Drawing.Size(548, 277);
             this.dgvVisitList.TabIndex = 0;
+            // 
+            // dgvtbcFIO
+            // 
+            this.dgvtbcFIO.HeaderText = "ФИО сотрудника";
+            this.dgvtbcFIO.Name = "dgvtbcFIO";
+            this.dgvtbcFIO.ReadOnly = true;
+            this.dgvtbcFIO.Width = 275;
+            // 
+            // dgvtbcInTime
+            // 
+            this.dgvtbcInTime.HeaderText = "Время прихода";
+            this.dgvtbcInTime.Name = "dgvtbcInTime";
+            this.dgvtbcInTime.ReadOnly = true;
+            this.dgvtbcInTime.Width = 75;
+            // 
+            // dgvtbcOutTime
+            // 
+            this.dgvtbcOutTime.HeaderText = "Время ухода";
+            this.dgvtbcOutTime.Name = "dgvtbcOutTime";
+            this.dgvtbcOutTime.ReadOnly = true;
+            this.dgvtbcOutTime.Width = 75;
+            // 
+            // dgvtbcDate
+            // 
+            this.dgvtbcDate.HeaderText = "Дата";
+            this.dgvtbcDate.Name = "dgvtbcDate";
+            this.dgvtbcDate.ReadOnly = true;
+            this.dgvtbcDate.Width = 75;
             // 
             // lCurrentTime
             // 
@@ -94,34 +122,6 @@ namespace EMSAlexander
             this.tbBarcode.TabIndex = 3;
             this.tbBarcode.TextChanged += new System.EventHandler(this.tbBarcode_TextChanged);
             // 
-            // dgvtbcFIO
-            // 
-            this.dgvtbcFIO.HeaderText = "ФИО сотрудника";
-            this.dgvtbcFIO.Name = "dgvtbcFIO";
-            this.dgvtbcFIO.ReadOnly = true;
-            this.dgvtbcFIO.Width = 275;
-            // 
-            // dgvtbcInTime
-            // 
-            this.dgvtbcInTime.HeaderText = "Время прихода";
-            this.dgvtbcInTime.Name = "dgvtbcInTime";
-            this.dgvtbcInTime.ReadOnly = true;
-            this.dgvtbcInTime.Width = 75;
-            // 
-            // dgvtbcOutTime
-            // 
-            this.dgvtbcOutTime.HeaderText = "Время ухода";
-            this.dgvtbcOutTime.Name = "dgvtbcOutTime";
-            this.dgvtbcOutTime.ReadOnly = true;
-            this.dgvtbcOutTime.Width = 75;
-            // 
-            // dgvtbcDate
-            // 
-            this.dgvtbcDate.HeaderText = "Дата";
-            this.dgvtbcDate.Name = "dgvtbcDate";
-            this.dgvtbcDate.ReadOnly = true;
-            this.dgvtbcDate.Width = 75;
-            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -134,6 +134,7 @@ namespace EMSAlexander
             this.KeyPreview = true;
             this.Name = "fMain";
             this.Text = "EMS Alexander";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMain_FormClosing);
             this.Load += new System.EventHandler(this.fMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVisitList)).EndInit();
