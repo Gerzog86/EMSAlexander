@@ -40,8 +40,17 @@ namespace EMSAlexander
             if (tbBarcode.Text.Length == 8)
             {
                 dgvVisitList.Rows.Add();
-                dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[0].Value = Personnel.ReturnFIO(Int64.Parse(tbBarcode.Text));
-                dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[1].Value = DateTime.Now.ToShortTimeString();
+                dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[0].Value = Personnel.ReturnFIO(long.Parse(tbBarcode.Text));
+                if (Personnel.IsOnWork(long.Parse(tbBarcode.Text)))
+                {
+                    dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[2].Value = DateTime.Now.ToShortTimeString();
+                    Personnel.ChangeWorkStatus(long.Parse(tbBarcode.Text));
+                }
+                else
+                {
+                    dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[1].Value = DateTime.Now.ToShortTimeString();
+                    Personnel.ChangeWorkStatus(long.Parse(tbBarcode.Text));
+                }
                 dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[3].Value = DateTime.Now.ToShortDateString();
                 tbBarcode.Clear();
             }

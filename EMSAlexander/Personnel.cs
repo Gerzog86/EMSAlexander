@@ -38,7 +38,7 @@ namespace EMSAlexander
             sr.Close();
             foreach (Person i in barcodes.Values)
             {
-                i.LoadFromFile();
+                i.LoadAll();
             }
         }
 
@@ -47,6 +47,19 @@ namespace EMSAlexander
             Person toReturn = null;
             barcodes.TryGetValue(barcode, out toReturn);
             return toReturn.GetFIO();
+        }
+
+        public static bool IsOnWork (long barcode)
+        {
+            Person toReturn = null;
+            barcodes.TryGetValue(barcode, out toReturn);
+            return toReturn.IsOnWork();
+        }
+        public static void ChangeWorkStatus (long barcode)
+        {
+            Person toReturn = null;
+            barcodes.TryGetValue(barcode, out toReturn);
+            toReturn.ChangeWorkStatus();
         }
     }
 }
