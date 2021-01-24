@@ -31,6 +31,7 @@ namespace EMSAlexander
         private void fMain_Load(object sender, EventArgs e)
         {
             this.ActiveControl = tbBarcode;
+            Personnel.LoadPersonnel();
             sfdExport.Filter = "Файл учёта рабочего времени | *.txt";
         }
 
@@ -41,7 +42,7 @@ namespace EMSAlexander
                 dgvVisitList.Rows.Add();
                 dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[0].Value = Personnel.ReturnFIO(Int64.Parse(tbBarcode.Text));
                 dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[1].Value = DateTime.Now.ToShortTimeString();
-                dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[2].Value = DateTime.Now.ToShortDateString();
+                dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[3].Value = DateTime.Now.ToShortDateString();
                 tbBarcode.Clear();
             }
         }

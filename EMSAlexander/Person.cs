@@ -5,22 +5,31 @@ using System.IO;
 
 namespace EMSAlexander
 {
-    class Person
+    public class Person
     {
 
         private string fio;
         private long barcode;
-        private string filepath_in, filepath_out;
+        private string filepath_in, filepath_out, filepath_info;
         private bool onwork;
         private DateTime[] gointimes;
         private DateTime[] goouttimes;
 
-        Person(long Barcode, string FIO)
+
+        public Person(long Barcode)
+        {
+            barcode = Barcode;
+            filepath_in = "Personnel" + "\\" + barcode + "\\" + "intimes.txt";
+            filepath_out = "Personnel" + "\\" + barcode + "\\" + "outtimes.txt";
+            filepath_info = "Personnel" + "\\" + barcode + "\\" + "info.txt";
+        }
+        public Person(long Barcode, string FIO)
         {
             barcode = Barcode;
             fio = FIO;
-            filepath_in = "Personnel\"" + barcode + "\"" + "intimes.txt";
-            filepath_out = "Personnel\"" + barcode + "\"" + "outtimes.txt";
+            filepath_in = "Personnel" + "\\" + barcode + "\\" + "intimes.txt";
+            filepath_out = "Personnel" + "\\" + barcode + "\\" + "outtimes.txt";
+            filepath_info = "Personnel" + "\\" + barcode + "\\" + "info.txt";
         }
 
 
@@ -30,15 +39,22 @@ namespace EMSAlexander
         }
 
 
-        public void SetFIO (string FIO)
+        public void SetFIO(string FIO)
         {
             fio = FIO;
         }
-        public string ReturnFIO ()
+        public string GetFIO()
         {
             return fio;
         }
 
+
+        public void LoadFromFile ()
+        {
+            StreamReader sr = new StreamReader (filepath_info);
+            fio = sr.ReadLine();
+            onwork = bool.Parse(sr.ReadLine());
+        }
         public void SaveToFile ()
         {
             StreamWriter sw = new StreamWriter(filepath_in);

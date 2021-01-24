@@ -37,7 +37,8 @@ namespace EMSAlexander
             this.tbBarcode = new System.Windows.Forms.TextBox();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
             this.dgvtbcFIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvtbcComingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtbcInTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtbcOutTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvtbcDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVisitList)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +50,8 @@ namespace EMSAlexander
             this.dgvVisitList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVisitList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvtbcFIO,
-            this.dgvtbcComingTime,
+            this.dgvtbcInTime,
+            this.dgvtbcOutTime,
             this.dgvtbcDate});
             this.dgvVisitList.Location = new System.Drawing.Point(12, 42);
             this.dgvVisitList.Name = "dgvVisitList";
@@ -97,14 +99,21 @@ namespace EMSAlexander
             this.dgvtbcFIO.HeaderText = "ФИО сотрудника";
             this.dgvtbcFIO.Name = "dgvtbcFIO";
             this.dgvtbcFIO.ReadOnly = true;
-            this.dgvtbcFIO.Width = 350;
+            this.dgvtbcFIO.Width = 275;
             // 
-            // dgvtbcComingTime
+            // dgvtbcInTime
             // 
-            this.dgvtbcComingTime.HeaderText = "Время прихода";
-            this.dgvtbcComingTime.Name = "dgvtbcComingTime";
-            this.dgvtbcComingTime.ReadOnly = true;
-            this.dgvtbcComingTime.Width = 75;
+            this.dgvtbcInTime.HeaderText = "Время прихода";
+            this.dgvtbcInTime.Name = "dgvtbcInTime";
+            this.dgvtbcInTime.ReadOnly = true;
+            this.dgvtbcInTime.Width = 75;
+            // 
+            // dgvtbcOutTime
+            // 
+            this.dgvtbcOutTime.HeaderText = "Время ухода";
+            this.dgvtbcOutTime.Name = "dgvtbcOutTime";
+            this.dgvtbcOutTime.ReadOnly = true;
+            this.dgvtbcOutTime.Width = 75;
             // 
             // dgvtbcDate
             // 
@@ -142,7 +151,8 @@ namespace EMSAlexander
         private System.Windows.Forms.TextBox tbBarcode;
         private System.Windows.Forms.SaveFileDialog sfdExport;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvtbcFIO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtbcComingTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtbcInTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvtbcOutTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvtbcDate;
     }
 }

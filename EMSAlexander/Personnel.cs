@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace EMSAlexander
 {
@@ -14,7 +15,7 @@ namespace EMSAlexander
             {10000021, "Жовнер Эльвира"},
             {10000038, "Белогорцева Лидия"},
             {10000045, "Остроушко Елена"},
-            {10000052, "Осадченко Ольга"},
+            {10000052, "Стороженко Ольга"},
             {10000069, "Минина Светлана"},
             {10000076, "Чикоткова Арина"},
             {10000083, "Цемина Юлия"},
@@ -24,16 +25,28 @@ namespace EMSAlexander
             {10000120, "Сухарь Ирина"}
         };*/
 
-        static private Dictionary<long, Person> barcodes = new Dictionary<long, Person>
-        {
+        static private Dictionary<long, Person> barcodes = new Dictionary<long, Person>();
 
+        public static void LoadPersonnel ()
+        {
+            StreamReader sr = new StreamReader("Personnel" + "\\" + "barcodes.txt");
+            while (!sr.EndOfStream)
+            {
+                string s = sr.ReadLine();
+                barcodes.Add(long.Parse(s), new Person(long.Parse(s)));
+            }
+            sr.Close();
+            foreach (Person i in barcodes.Values)
+            {
+                i.LoadFromFile();
+            }
         }
 
         public static string ReturnFIO(long barcode)
         {
-            string toReturn = null;
+            Person toReturn = null;
             barcodes.TryGetValue(barcode, out toReturn);
-            return toReturn;
+            return toReturn.GetFIO();
         }
     }
 }

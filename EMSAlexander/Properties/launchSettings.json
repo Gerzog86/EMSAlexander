@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EMSAlexander": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Work\\c#\\EMSAlexander\\EMSAlexander"
+    }
+  }
+}
