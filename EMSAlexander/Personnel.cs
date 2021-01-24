@@ -7,7 +7,7 @@ namespace EMSAlexander
     static class Personnel
     {
 
-        static private Dictionary<Int64, string> barcodes = new Dictionary<long, string>
+        /*static private Dictionary<long, string> barcodes = new Dictionary<long, string>
         {
 
             {10000014, "Остроушко Иван"},
@@ -22,9 +22,14 @@ namespace EMSAlexander
             {10000106, "Красноруцкий Дмитрий"},
             {10000113, "Костюков Сергей"},
             {10000120, "Сухарь Ирина"}
-        };
+        };*/
 
-        public static string ReturnFIO(Int64 barcode)
+        static private Dictionary<long, Person> barcodes = new Dictionary<long, Person>
+        {
+
+        }
+
+        public static string ReturnFIO(long barcode)
         {
             string toReturn = null;
             barcodes.TryGetValue(barcode, out toReturn);
