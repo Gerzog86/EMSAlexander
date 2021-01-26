@@ -30,8 +30,10 @@ namespace EMSAlexander
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            FileStream fs = new FileStream("settings.stg", FileMode.OpenOrCreate);
+            FileStream fs = new FileStream("settings.stg", FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
+            Personnel.InTimeSetting = dtpInTime.Value.ToShortTimeString();
+            Personnel.OutTimeSetting = dtpOutTime.Value.ToShortTimeString();
             sw.WriteLine(Personnel.InTimeSetting);
             sw.WriteLine(Personnel.OutTimeSetting);
             sw.Close();
