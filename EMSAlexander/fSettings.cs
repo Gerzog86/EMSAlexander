@@ -18,7 +18,6 @@ namespace EMSAlexander
 
         private void fSettings_Load(object sender, EventArgs e)
         {
-            dtpInTime.cal
             dtpInTime.Format = DateTimePickerFormat.Custom;
             dtpInTime.CustomFormat = "HH:mm";
             dtpOutTime.Format = DateTimePickerFormat.Custom;
