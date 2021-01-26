@@ -25,7 +25,7 @@ namespace EMSAlexander
             {10000120, "Сухарь Ирина"}
         };*/
 
-        static private Dictionary<long, Person> barcodes = new Dictionary<long, Person>();
+        static public Dictionary<long, Person> barcodes = new Dictionary<long, Person>();
 
         public static void LoadPersonnel()
         {
@@ -55,6 +55,12 @@ namespace EMSAlexander
             barcodes.TryGetValue(barcode, out toReturn);
             return toReturn.GetFIO();
         }
+        public static void SetFIO(long barcode, string fio)
+        {
+            Person toSet = null;
+            barcodes.TryGetValue(barcode, out toSet);
+            toSet.SetFIO(fio);
+        }
 
         public static bool IsOnWork (long barcode)
         {
@@ -64,9 +70,12 @@ namespace EMSAlexander
         }
         public static void ChangeWorkStatus (long barcode)
         {
-            Person toReturn = null;
-            barcodes.TryGetValue(barcode, out toReturn);
-            toReturn.ChangeWorkStatus();
+            Person toSet = null;
+            barcodes.TryGetValue(barcode, out toSet);
+            toSet.ChangeWorkStatus();
         }
+
+
+        //public static void SetInDates ()
     }
 }

@@ -39,16 +39,21 @@ namespace EMSAlexander
         {
             if (tbBarcode.Text.Length == 8)
             {
+                Person DatetimeSet = null;
                 dgvVisitList.Rows.Add();
                 dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[0].Value = Personnel.ReturnFIO(long.Parse(tbBarcode.Text));
                 if (Personnel.IsOnWork(long.Parse(tbBarcode.Text)))
                 {
                     dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[2].Value = DateTime.Now.ToShortTimeString();
+                    Personnel.barcodes.TryGetValue(long.Parse(tbBarcode.Text), out DatetimeSet);
+                    DatetimeSet.AddDate("out", DateTime.Now);
                     Personnel.ChangeWorkStatus(long.Parse(tbBarcode.Text));
                 }
                 else
                 {
                     dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[1].Value = DateTime.Now.ToShortTimeString();
+                    Personnel.barcodes.TryGetValue(long.Parse(tbBarcode.Text), out DatetimeSet);
+                    DatetimeSet.AddDate("in", DateTime.Now);
                     Personnel.ChangeWorkStatus(long.Parse(tbBarcode.Text));
                 }
                 dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[3].Value = DateTime.Now.ToShortDateString();
@@ -59,10 +64,15 @@ namespace EMSAlexander
 
         private void fMain_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.E)
+            /*if (e.Control && e.KeyCode == Keys.E)
             {
                 sfdExport.ShowDialog();
                 ExportReport(sfdExport.FileName);
+            }*/
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+                fReport ExportForm = new fReport();
+                ExportForm.ShowDialog();
             }
         }
 

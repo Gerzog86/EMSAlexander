@@ -16,31 +16,28 @@ namespace EMSAlexander
         private List<DateTime> goouttimes;
 
 
-        public Person(long Barcode)
+        public Person() : this(0)
         {
-            barcode = Barcode;
-            filepath_in = "Personnel" + "\\" + barcode + "\\" + "intimes.txt";
-            filepath_out = "Personnel" + "\\" + barcode + "\\" + "outtimes.txt";
-            filepath_info = "Personnel" + "\\" + barcode + "\\" + "info.txt";
-            gointimes = new List<DateTime>();
-            goouttimes = new List<DateTime>();
+        }
+        public Person(long Barcode) : this (Barcode, "ФИО не определены")
+        {
         }
         public Person(long Barcode, string FIO)
         {
-            barcode = Barcode;
-            fio = FIO;
-            filepath_in = "Personnel" + "\\" + barcode + "\\" + "intimes.txt";
-            filepath_out = "Personnel" + "\\" + barcode + "\\" + "outtimes.txt";
-            filepath_info = "Personnel" + "\\" + barcode + "\\" + "info.txt";
-            gointimes = new List<DateTime>();
-            goouttimes = new List<DateTime>();
+            this.barcode = Barcode;
+            this.fio = FIO;
+            this.filepath_in = "Personnel" + "\\" + barcode + "\\" + "intimes.txt";
+            this.filepath_out = "Personnel" + "\\" + barcode + "\\" + "outtimes.txt";
+            this.filepath_info = "Personnel" + "\\" + barcode + "\\" + "info.txt";
+            this.gointimes = new List<DateTime>();
+            this.goouttimes = new List<DateTime>();
         }
 
 
 
         public void SetFIO(string FIO)
         {
-            fio = FIO;
+            this.fio = FIO;
         }
         public string GetFIO()
         {
@@ -55,9 +52,27 @@ namespace EMSAlexander
         }
         public void ChangeWorkStatus()
         {
-            onwork = !onwork;
+            this.onwork = !onwork;
         }
 
+
+        ///<summary>
+        ///<paramref name="in_out">True if InDate, False if OutDate</paramref name="in_out">
+        ///</summary>
+        public void AddDate (string in_out, DateTime dtToSet)
+        {
+            if (in_out.Equals("in"))
+            {
+                this.gointimes.Add(dtToSet);
+            }
+            else
+            {
+                if (in_out.Equals("out"))
+                {
+                    this.goouttimes.Add(dtToSet);
+                }
+            }
+        }
 
 
 
@@ -71,21 +86,27 @@ namespace EMSAlexander
         }
         public void LoadInDates ()
         {
-            StreamReader sr = new StreamReader(filepath_in);
+            FileStream fs = new FileStream(filepath_in, FileMode.OpenOrCreate);
+            StreamReader sr = new StreamReader(fs);
             gointimes.Clear();
             while (!sr.EndOfStream)
             {
                 gointimes.Add(DateTime.Parse(sr.ReadLine()));
             }
+            sr.Close();
+            fs.Close();
         }
         public void LoadOutDates()
         {
-            StreamReader sr = new StreamReader(filepath_out);
+            FileStream fs = new FileStream(filepath_out, FileMode.OpenOrCreate);
+            StreamReader sr = new StreamReader(fs);
             goouttimes.Clear();
             while (!sr.EndOfStream)
             {
                 goouttimes.Add(DateTime.Parse(sr.ReadLine()));
             }
+            sr.Close();
+            fs.Close();
         }
         public void LoadAll ()
         {
@@ -97,14 +118,17 @@ namespace EMSAlexander
 
         public void SaveInfo ()
         {
-            StreamWriter sw = new StreamWriter(filepath_info);
+            FileStream fs = new FileStream(filepath_info, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
             sw.WriteLine(fio);
             sw.Write(onwork.ToString());
             sw.Close();
+            fs.Close();
         }
         public void SaveInDates ()
         {
-            StreamWriter sw = new StreamWriter(filepath_in);
+            FileStream fs = new FileStream(filepath_in, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
             if (gointimes.Count > 0)
             {
                 foreach (DateTime i in gointimes)
@@ -113,14 +137,18 @@ namespace EMSAlexander
                 }
             }
             sw.Close();
+            fs.Close();
         }
         public void SaveOutDates ()
         {
-            StreamWriter sw = new StreamWriter(filepath_out);
+            FileStream fs = new FileStream(filepath_out, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
             foreach (DateTime i in goouttimes)
             {
                 sw.WriteLine(i);
             }
+            sw.Close();
+            fs.Close();
         }
         public void SaveAll ()
         {
