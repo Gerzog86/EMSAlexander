@@ -18,21 +18,28 @@ namespace EMSAlexander
             InitializeComponent();
         }
 
+
         private void tTimer_Tick(object sender, EventArgs e)
         {
             lCurrentDate.Text = DateTime.Now.ToLongDateString();
             lCurrentTime.Text = DateTime.Now.ToLongTimeString();
-            if (DateTime.Now.ToShortTimeString().Equals("23:58:00"))
+            /*if (DateTime.Now.ToShortTimeString().Equals("23:58:00"))
             {
                 ExportReport(Application.StartupPath, "Midnight" + DateTime.Now.ToShortDateString());
-            }
+            }*/
         }
 
         private void fMain_Load(object sender, EventArgs e)
         {
             this.ActiveControl = tbBarcode;
             Personnel.LoadPersonnel();
-            sfdExport.Filter = "Файл учёта рабочего времени | *.txt";
+            FileStream fs = new FileStream("Settings.stg", FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+            Personnel.InTimeSetting = DateTime.Parse(sr.ReadLine());
+            Personnel.OutTimeSetting = DateTime.Parse(sr.ReadLine());
+            sr.Close();
+            fs.Close();
+            //sfdExport.Filter = "Файл учёта рабочего времени | *.txt";
         }
 
         private void tbBarcode_TextChanged(object sender, EventArgs e)
@@ -73,6 +80,11 @@ namespace EMSAlexander
             {
                 fReport ExportForm = new fReport();
                 ExportForm.ShowDialog();
+            }
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                fSettings SettingsForm = new fSettings(this);
+                SettingsForm.ShowDialog();
             }
         }
 

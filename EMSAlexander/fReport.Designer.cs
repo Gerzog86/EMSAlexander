@@ -48,6 +48,7 @@ namespace EMSAlexander
             this.bExportAndCalcMonth.TabIndex = 1;
             this.bExportAndCalcMonth.Text = "Экспорт и расчёт";
             this.bExportAndCalcMonth.UseVisualStyleBackColor = true;
+            this.bExportAndCalcMonth.Click += new System.EventHandler(this.bExportAndCalcMonth_Click);
             // 
             // fReport
             // 

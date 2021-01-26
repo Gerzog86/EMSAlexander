@@ -25,6 +25,7 @@ namespace EMSAlexander
             {10000120, "Сухарь Ирина"}
         };*/
 
+        static public DateTime InTimeSetting, OutTimeSetting;
         static public Dictionary<long, Person> barcodes = new Dictionary<long, Person>();
 
         public static void LoadPersonnel()

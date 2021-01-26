@@ -20,5 +20,10 @@ namespace EMSAlexander
             dtpMonthPicker.Format = DateTimePickerFormat.Custom;
             dtpMonthPicker.CustomFormat = "MM/yyyy";
         }
+
+        private void bExportAndCalcMonth_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
