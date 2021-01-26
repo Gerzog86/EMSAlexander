@@ -10,6 +10,10 @@ namespace EMSAlexander
 {
     public partial class fReport : Form
     {
+
+        private Dictionary<string, int> GoodInTimes= new Dictionary<string, int>();
+
+
         public fReport()
         {
             InitializeComponent();
@@ -23,7 +27,7 @@ namespace EMSAlexander
 
         private void bExportAndCalcMonth_Click(object sender, EventArgs e)
         {
-
+            GoodInTimes = Personnel.CalculateTimes(dtpMonthPicker.Value.Month.ToString(), "in");
         }
     }
 }

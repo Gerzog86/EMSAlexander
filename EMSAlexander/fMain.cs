@@ -35,8 +35,8 @@ namespace EMSAlexander
             Personnel.LoadPersonnel();
             FileStream fs = new FileStream("Settings.stg", FileMode.Open);
             StreamReader sr = new StreamReader(fs);
-            Personnel.InTimeSetting = DateTime.Parse(sr.ReadLine());
-            Personnel.OutTimeSetting = DateTime.Parse(sr.ReadLine());
+            Personnel.InTimeSetting = sr.ReadLine();
+            Personnel.OutTimeSetting = sr.ReadLine();
             sr.Close();
             fs.Close();
             //sfdExport.Filter = "Файл учёта рабочего времени | *.txt";

@@ -31,12 +31,16 @@ namespace EMSAlexander
         {
             this.dtpMonthPicker = new System.Windows.Forms.DateTimePicker();
             this.bExportAndCalcMonth = new System.Windows.Forms.Button();
+            this.sfdExportMonthInTimes = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // dtpMonthPicker
             // 
+            this.dtpMonthPicker.CustomFormat = "MM/yyyy";
+            this.dtpMonthPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpMonthPicker.Location = new System.Drawing.Point(12, 12);
             this.dtpMonthPicker.Name = "dtpMonthPicker";
+            this.dtpMonthPicker.ShowUpDown = true;
             this.dtpMonthPicker.Size = new System.Drawing.Size(161, 23);
             this.dtpMonthPicker.TabIndex = 0;
             // 
@@ -49,6 +53,10 @@ namespace EMSAlexander
             this.bExportAndCalcMonth.Text = "Экспорт и расчёт";
             this.bExportAndCalcMonth.UseVisualStyleBackColor = true;
             this.bExportAndCalcMonth.Click += new System.EventHandler(this.bExportAndCalcMonth_Click);
+            // 
+            // sfdExportMonthInTimes
+            // 
+            this.sfdExportMonthInTimes.Filter = "Файл учёта рабочего времени | *.txt";
             // 
             // fReport
             // 
@@ -68,5 +76,6 @@ namespace EMSAlexander
 
         private System.Windows.Forms.DateTimePicker dtpMonthPicker;
         private System.Windows.Forms.Button bExportAndCalcMonth;
+        private System.Windows.Forms.SaveFileDialog sfdExportMonthInTimes;
     }
 }

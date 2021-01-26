@@ -38,8 +38,11 @@ namespace EMSAlexander
             // 
             // dtpInTime
             // 
+            this.dtpInTime.CustomFormat = "HH:mm";
+            this.dtpInTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpInTime.Location = new System.Drawing.Point(263, 24);
             this.dtpInTime.Name = "dtpInTime";
+            this.dtpInTime.ShowUpDown = true;
             this.dtpInTime.Size = new System.Drawing.Size(201, 23);
             this.dtpInTime.TabIndex = 0;
             // 
@@ -61,6 +64,7 @@ namespace EMSAlexander
             this.bSave.TabIndex = 2;
             this.bSave.Text = "Сохранить настройки";
             this.bSave.UseVisualStyleBackColor = true;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
             // lOutTime
             // 
@@ -74,8 +78,11 @@ namespace EMSAlexander
             // 
             // dtpOutTime
             // 
+            this.dtpOutTime.CustomFormat = "HH:mm";
+            this.dtpOutTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpOutTime.Location = new System.Drawing.Point(263, 64);
             this.dtpOutTime.Name = "dtpOutTime";
+            this.dtpOutTime.ShowUpDown = true;
             this.dtpOutTime.Size = new System.Drawing.Size(201, 23);
             this.dtpOutTime.TabIndex = 3;
             // 

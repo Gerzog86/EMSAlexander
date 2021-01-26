@@ -12,8 +12,8 @@ namespace EMSAlexander
         private long barcode;
         private string filepath_in, filepath_out, filepath_info;
         private bool onwork;
-        private List<DateTime> gointimes;
-        private List<DateTime> goouttimes;
+        public List<DateTime> gointimes;
+        public List<DateTime> goouttimes;
 
 
         public Person() : this(0)

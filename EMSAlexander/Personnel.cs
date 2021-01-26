@@ -25,7 +25,7 @@ namespace EMSAlexander
             {10000120, "Сухарь Ирина"}
         };*/
 
-        static public DateTime InTimeSetting, OutTimeSetting;
+        static public string InTimeSetting, OutTimeSetting;
         static public Dictionary<long, Person> barcodes = new Dictionary<long, Person>();
 
         public static void LoadPersonnel()
@@ -48,6 +48,51 @@ namespace EMSAlexander
             {
                 i.SaveAll();
             }
+        }
+
+
+        private static string CalculatePersonTimes(string month, long barcode, string in_out, out int count)
+        {
+            count = 0;
+            Person temp = null;
+            if (in_out.Equals("in"))
+            {
+                barcodes.TryGetValue(barcode, out temp);
+                foreach (DateTime t in temp.gointimes)
+                {
+                    if ( (t.Month.ToString().Equals(month)) && (DateTime.Parse(t.ToShortTimeString()).CompareTo(DateTime.Parse(InTimeSetting)) <= 0) )
+                    {
+                        count++;
+                    }
+                }
+            }
+            else
+            {
+                if (in_out.Equals("out"))
+                {
+                    barcodes.TryGetValue(barcode, out temp);
+                    foreach (DateTime t in temp.goouttimes)
+                    {
+                        if ((t.Month.ToString().Equals(month)) && (DateTime.Parse(t.ToShortTimeString()).CompareTo(DateTime.Parse(InTimeSetting)) >= 0))
+                        {
+                            count++;
+                        }
+                    }
+                }
+            }
+            return temp.GetFIO();
+        }
+        public static Dictionary<string, int> CalculateTimes(string month, string in_out)
+        {
+            Dictionary<string, int> toReturn = new Dictionary<string, int>();
+            foreach (long i in barcodes.Keys)
+            {
+                string fio = "";
+                int count = 0;
+                fio = CalculatePersonTimes(month, i, in_out, out count);
+                toReturn.Add(fio, count);
+            }
+            return toReturn;
         }
 
         public static string ReturnFIO(long barcode)
