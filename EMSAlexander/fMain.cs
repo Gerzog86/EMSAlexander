@@ -86,6 +86,11 @@ namespace EMSAlexander
                 fSettings SettingsForm = new fSettings(this);
                 SettingsForm.ShowDialog();
             }
+            if (e.Control && e.KeyCode == Keys.P)
+            {
+                fPersonnel PersonnelForm = new fPersonnel(this);
+                PersonnelForm.ShowDialog();
+            }
         }
 
         private void ExportReport(string filename)
