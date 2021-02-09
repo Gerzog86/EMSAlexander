@@ -47,9 +47,11 @@ namespace EMSAlexander
             this.dgvtbcFIO,
             this.dgvtbcSthrih});
             this.dgvPersonnel.Location = new System.Drawing.Point(12, 12);
+            this.dgvPersonnel.MultiSelect = false;
             this.dgvPersonnel.Name = "dgvPersonnel";
             this.dgvPersonnel.ReadOnly = true;
             this.dgvPersonnel.RowTemplate.Height = 25;
+            this.dgvPersonnel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPersonnel.Size = new System.Drawing.Size(495, 420);
             this.dgvPersonnel.TabIndex = 0;
             // 
@@ -85,6 +87,7 @@ namespace EMSAlexander
             this.bEditPersonnel.TabIndex = 2;
             this.bEditPersonnel.Text = "Редактировать сотрудника";
             this.bEditPersonnel.UseVisualStyleBackColor = true;
+            this.bEditPersonnel.Click += new System.EventHandler(this.bEditPersonnel_Click);
             // 
             // bDeletePersonnel
             // 

@@ -29,9 +29,9 @@ namespace EMSAlexander
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbLastName = new System.Windows.Forms.TextBox();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.tbFatherName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,26 +41,26 @@ namespace EMSAlexander
             ((System.ComponentModel.ISupportInitialize)(this.pbBarcode)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // tbLastName
             // 
-            this.textBox1.Location = new System.Drawing.Point(224, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(264, 23);
-            this.textBox1.TabIndex = 0;
+            this.tbLastName.Location = new System.Drawing.Point(224, 12);
+            this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Size = new System.Drawing.Size(264, 23);
+            this.tbLastName.TabIndex = 0;
             // 
-            // textBox2
+            // tbName
             // 
-            this.textBox2.Location = new System.Drawing.Point(224, 41);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(264, 23);
-            this.textBox2.TabIndex = 1;
+            this.tbName.Location = new System.Drawing.Point(224, 41);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(264, 23);
+            this.tbName.TabIndex = 1;
             // 
-            // textBox3
+            // tbFatherName
             // 
-            this.textBox3.Location = new System.Drawing.Point(224, 70);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(264, 23);
-            this.textBox3.TabIndex = 2;
+            this.tbFatherName.Location = new System.Drawing.Point(224, 70);
+            this.tbFatherName.Name = "tbFatherName";
+            this.tbFatherName.Size = new System.Drawing.Size(264, 23);
+            this.tbFatherName.TabIndex = 2;
             // 
             // label1
             // 
@@ -97,6 +97,7 @@ namespace EMSAlexander
             this.bSave.TabIndex = 6;
             this.bSave.Text = "Сохранить изменения";
             this.bSave.UseVisualStyleBackColor = true;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
             // pbBarcode
             // 
@@ -127,9 +128,9 @@ namespace EMSAlexander
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbFatherName);
+            this.Controls.Add(this.tbName);
+            this.Controls.Add(this.tbLastName);
             this.Name = "fPerson";
             this.Text = "fPerson";
             this.Load += new System.EventHandler(this.fPerson_Load);
@@ -141,9 +142,9 @@ namespace EMSAlexander
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbLastName;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.TextBox tbFatherName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
