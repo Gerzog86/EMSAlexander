@@ -26,6 +26,7 @@ namespace EMSAlexander
             //StreamReader sr = new StreamReader(fs);
             dtpInTime.Value = DateTime.Parse(Personnel.InTimeSetting);
             dtpOutTime.Value = DateTime.Parse(Personnel.OutTimeSetting);
+            tbOrganisationName.Text = Personnel.OrganisationName;
         }
 
         private void bSave_Click(object sender, EventArgs e)
@@ -34,8 +35,10 @@ namespace EMSAlexander
             StreamWriter sw = new StreamWriter(fs);
             Personnel.InTimeSetting = dtpInTime.Value.ToShortTimeString();
             Personnel.OutTimeSetting = dtpOutTime.Value.ToShortTimeString();
+            Personnel.OrganisationName = tbOrganisationName.Text;
             sw.WriteLine(Personnel.InTimeSetting);
             sw.WriteLine(Personnel.OutTimeSetting);
+            sw.WriteLine(Personnel.OrganisationName);
             sw.Close();
             fs.Close();
         }

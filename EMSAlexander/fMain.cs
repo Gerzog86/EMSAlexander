@@ -37,6 +37,7 @@ namespace EMSAlexander
             StreamReader sr = new StreamReader(fs);
             Personnel.InTimeSetting = sr.ReadLine();
             Personnel.OutTimeSetting = sr.ReadLine();
+            Personnel.OrganisationName = sr.ReadLine();
             sr.Close();
             fs.Close();
             //sfdExport.Filter = "Файл учёта рабочего времени | *.txt";
