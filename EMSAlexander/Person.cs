@@ -9,9 +9,9 @@ namespace EMSAlexander
     {
 
         private string fio;
-        private long barcode;
+        public long barcode;
         private string filepath_in, filepath_out, filepath_info;
-        private bool onwork;
+        private bool onwork = false;
         public List<DateTime> gointimes;
         public List<DateTime> goouttimes;
 
@@ -24,7 +24,14 @@ namespace EMSAlexander
         }
         public Person(long Barcode, string FIO)
         {
-            this.barcode = Barcode;
+            if (Barcode == 0)
+            {
+                this.barcode = this.CreateBarcode();
+            }
+            else
+            {
+                this.barcode = Barcode;
+            }
             this.fio = FIO;
             this.filepath_in = "Personnel" + "\\" + barcode + "\\" + "intimes.txt";
             this.filepath_out = "Personnel" + "\\" + barcode + "\\" + "outtimes.txt";
@@ -118,6 +125,7 @@ namespace EMSAlexander
 
         public void SaveInfo ()
         {
+            Directory.CreateDirectory("Personnel" + "\\" + barcode);
             FileStream fs = new FileStream(filepath_info, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
             sw.WriteLine(fio);
@@ -155,6 +163,29 @@ namespace EMSAlexander
             this.SaveInfo();
             this.SaveInDates();
             this.SaveOutDates();
+        }
+
+
+        public long CreateBarcode()
+        {
+            int counter = 0;
+            Random rand = new Random();
+            long newBar = rand.Next(10000000, 99999999);
+            foreach (long i in Personnel.barcodes.Keys)
+            {
+                if (newBar != i)
+                {
+                    counter++;
+                }
+            }
+            if (counter == Personnel.barcodes.Count)
+            {
+                return newBar;
+            }
+            else
+            {
+                return CreateBarcode();
+            }
         }
     }
 }

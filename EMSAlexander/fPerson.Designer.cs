@@ -95,6 +95,7 @@ namespace EMSAlexander
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 23);
             this.bSave.TabIndex = 6;
+            this.bSave.TabStop = false;
             this.bSave.Text = "Сохранить изменения";
             this.bSave.UseVisualStyleBackColor = true;
             this.bSave.Click += new System.EventHandler(this.bSave_Click);
@@ -114,6 +115,7 @@ namespace EMSAlexander
             this.bPrint.Name = "bPrint";
             this.bPrint.Size = new System.Drawing.Size(150, 23);
             this.bPrint.TabIndex = 8;
+            this.bPrint.TabStop = false;
             this.bPrint.Text = "Печать пропуска";
             this.bPrint.UseVisualStyleBackColor = true;
             // 

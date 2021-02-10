@@ -22,23 +22,28 @@ namespace EMSAlexander
 
         private void fPersonnel_Load(object sender, EventArgs e)
         {
-            foreach (var i in Personnel.barcodes)
-            {
-                dgvPersonnel.Rows.Add(i.Value.GetFIO(), i.Key);
-            }
+            Refresh();
         }
 
         private void bAddPersonnel_Click(object sender, EventArgs e)
         {
-            //Тестовый код для проверки генерации штрих-кодов EAN8
-            fPerson PersonForm = new fPerson(1000001);
+            fPerson PersonForm = new fPerson(0, this);
             PersonForm.ShowDialog();
         }
 
         private void bEditPersonnel_Click(object sender, EventArgs e)
         {
-            fPerson PersonForm = new fPerson(long.Parse(dgvPersonnel.SelectedRows[0].Cells[1].Value.ToString()));
+            fPerson PersonForm = new fPerson(long.Parse(dgvPersonnel.SelectedRows[0].Cells[1].Value.ToString()), this);
             PersonForm.ShowDialog();
+        }
+
+        public void Refresh()
+        {
+            dgvPersonnel.Rows.Clear();
+            foreach (var i in Personnel.barcodes)
+            {
+                dgvPersonnel.Rows.Add(i.Value.GetFIO(), i.Key);
+            }
         }
     }
 }

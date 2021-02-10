@@ -8,23 +8,6 @@ namespace EMSAlexander
     static class Personnel
     {
 
-        /*static private Dictionary<long, string> barcodes = new Dictionary<long, string>
-        {
-
-            {10000014, "Остроушко Иван"},
-            {10000021, "Жовнер Эльвира"},
-            {10000038, "Белогорцева Лидия"},
-            {10000045, "Остроушко Елена"},
-            {10000052, "Стороженко Ольга"},
-            {10000069, "Минина Светлана"},
-            {10000076, "Чикоткова Арина"},
-            {10000083, "Цемина Юлия"},
-            {10000090, "Милютина Светлана"},
-            {10000106, "Красноруцкий Дмитрий"},
-            {10000113, "Костюков Сергей"},
-            {10000120, "Сухарь Ирина"}
-        };*/
-
         static public string InTimeSetting, OutTimeSetting, OrganisationName;
         static public Dictionary<long, Person> barcodes = new Dictionary<long, Person>();
 
@@ -48,6 +31,15 @@ namespace EMSAlexander
             {
                 i.SaveAll();
             }
+
+            FileStream fs = new FileStream("Personnel" + "\\" + "barcodes.txt", FileMode.Create);
+            StreamWriter sr = new StreamWriter(fs);
+            foreach (long i in Personnel.barcodes.Keys)
+            {
+                sr.WriteLine(i);
+            }
+            sr.Close();
+            fs.Close();
         }
 
 
@@ -122,6 +114,6 @@ namespace EMSAlexander
         }
 
 
-        //public static void SetInDates ()
+
     }
 }
