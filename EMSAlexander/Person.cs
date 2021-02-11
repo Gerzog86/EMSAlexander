@@ -170,7 +170,9 @@ namespace EMSAlexander
         {
             int counter = 0;
             Random rand = new Random();
-            long newBar = rand.Next(10000000, 99999999);
+            long newBar = rand.Next(1000000, 9999999);
+            EAN8 nB = new EAN8(newBar.ToString());
+            newBar = long.Parse(nB.returnBarcode());
             foreach (long i in Personnel.barcodes.Keys)
             {
                 if (newBar != i)

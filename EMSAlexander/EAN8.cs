@@ -307,4 +307,14 @@ public class EAN8
 		}
 		return toReturn;
 	}
+
+	public string returnBarcode()
+    {
+		string toReturn = "";
+		foreach (int i in barcode)
+        {
+			toReturn += i.ToString();
+        }
+		return toReturn;
+    }
 }

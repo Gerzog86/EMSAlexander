@@ -45,5 +45,21 @@ namespace EMSAlexander
                 dgvPersonnel.Rows.Add(i.Value.GetFIO(), i.Key);
             }
         }
+
+        private void dgvPersonnel_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.bEditPersonnel_Click(sender, e);
+        }
+
+        private void bDeletePersonnel_Click(object sender, EventArgs e)
+        {
+            DialogResult dR = MessageBox.Show("Вы уверены, что хотите удалить сотрудника?", "Удаление сотрудника", MessageBoxButtons.YesNo);
+            if (dR == DialogResult.Yes)
+            {
+                Personnel.barcodes.Remove(long.Parse(dgvPersonnel.SelectedRows[0].Cells[1].Value.ToString()));
+                Personnel.SavePersonnel();
+                Refresh();
+            }
+        }
     }
 }

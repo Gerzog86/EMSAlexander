@@ -37,7 +37,8 @@ namespace EMSAlexander
             this.label3 = new System.Windows.Forms.Label();
             this.bSave = new System.Windows.Forms.Button();
             this.pbBarcode = new System.Windows.Forms.PictureBox();
-            this.bPrint = new System.Windows.Forms.Button();
+            this.bPrintPass = new System.Windows.Forms.Button();
+            this.bExportPass = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbBarcode)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,22 +110,33 @@ namespace EMSAlexander
             this.pbBarcode.TabIndex = 7;
             this.pbBarcode.TabStop = false;
             // 
-            // bPrint
+            // bPrintPass
             // 
-            this.bPrint.Location = new System.Drawing.Point(515, 41);
-            this.bPrint.Name = "bPrint";
-            this.bPrint.Size = new System.Drawing.Size(150, 23);
-            this.bPrint.TabIndex = 8;
-            this.bPrint.TabStop = false;
-            this.bPrint.Text = "Печать пропуска";
-            this.bPrint.UseVisualStyleBackColor = true;
+            this.bPrintPass.Location = new System.Drawing.Point(515, 41);
+            this.bPrintPass.Name = "bPrintPass";
+            this.bPrintPass.Size = new System.Drawing.Size(150, 23);
+            this.bPrintPass.TabIndex = 8;
+            this.bPrintPass.TabStop = false;
+            this.bPrintPass.Text = "Печать пропуска";
+            this.bPrintPass.UseVisualStyleBackColor = true;
+            // 
+            // bExportPass
+            // 
+            this.bExportPass.Location = new System.Drawing.Point(515, 69);
+            this.bExportPass.Name = "bExportPass";
+            this.bExportPass.Size = new System.Drawing.Size(150, 23);
+            this.bExportPass.TabIndex = 9;
+            this.bExportPass.TabStop = false;
+            this.bExportPass.Text = "Сохранить пропуск";
+            this.bExportPass.UseVisualStyleBackColor = true;
             // 
             // fPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 450);
-            this.Controls.Add(this.bPrint);
+            this.Controls.Add(this.bExportPass);
+            this.Controls.Add(this.bPrintPass);
             this.Controls.Add(this.pbBarcode);
             this.Controls.Add(this.bSave);
             this.Controls.Add(this.label3);
@@ -152,6 +164,7 @@ namespace EMSAlexander
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button bSave;
         private System.Windows.Forms.PictureBox pbBarcode;
-        private System.Windows.Forms.Button bPrint;
+        private System.Windows.Forms.Button bPrintPass;
+        private System.Windows.Forms.Button bExportPass;
     }
 }

@@ -54,6 +54,7 @@ namespace EMSAlexander
             this.dgvPersonnel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPersonnel.Size = new System.Drawing.Size(495, 420);
             this.dgvPersonnel.TabIndex = 0;
+            this.dgvPersonnel.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPersonnel_CellDoubleClick);
             // 
             // dgvtbcFIO
             // 
@@ -97,6 +98,7 @@ namespace EMSAlexander
             this.bDeletePersonnel.TabIndex = 3;
             this.bDeletePersonnel.Text = "Удалить сотрудника";
             this.bDeletePersonnel.UseVisualStyleBackColor = true;
+            this.bDeletePersonnel.Click += new System.EventHandler(this.bDeletePersonnel_Click);
             // 
             // fPersonnel
             // 
