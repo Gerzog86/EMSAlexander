@@ -73,5 +73,28 @@ namespace EMSAlexander
             this.Close();
             f.Refresh();
         }
+
+        private void bPrintPass_Click(object sender, EventArgs e)
+        {
+
+            pdPrintPass.Document = pdPass;
+            if (pdPrintPass.ShowDialog() == DialogResult.OK)
+            {
+
+                pdPass.PrinterSettings = pdPrintPass.PrinterSettings;
+                pdPass.Print();
+            }
+            bSave_Click(sender, e);
+        }
+
+        private void pdPass_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Font myFont = new Font("Calibri", 18, FontStyle.Regular, GraphicsUnit.Pixel);
+            e.Graphics.DrawRectangle(Pens.Black, 40, 40, 250, 200);
+            e.Graphics.DrawString(tbLastName.Text, myFont, Brushes.Black, new PointF(50, 50));
+            myFont = new Font("Calibri", 14, FontStyle.Regular, GraphicsUnit.Pixel);
+            e.Graphics.DrawString(tbName.Text + tbFatherName.Text, myFont, Brushes.Black, new PointF(50, 70));
+            e.Graphics.DrawImage(pbBarcode.Image, new Point(50, 90));
+        }
     }
 }

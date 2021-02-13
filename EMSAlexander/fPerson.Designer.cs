@@ -38,7 +38,8 @@ namespace EMSAlexander
             this.bSave = new System.Windows.Forms.Button();
             this.pbBarcode = new System.Windows.Forms.PictureBox();
             this.bPrintPass = new System.Windows.Forms.Button();
-            this.bExportPass = new System.Windows.Forms.Button();
+            this.pdPass = new System.Drawing.Printing.PrintDocument();
+            this.pdPrintPass = new System.Windows.Forms.PrintDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pbBarcode)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,23 +120,22 @@ namespace EMSAlexander
             this.bPrintPass.TabStop = false;
             this.bPrintPass.Text = "Печать пропуска";
             this.bPrintPass.UseVisualStyleBackColor = true;
+            this.bPrintPass.Click += new System.EventHandler(this.bPrintPass_Click);
             // 
-            // bExportPass
+            // pdPass
             // 
-            this.bExportPass.Location = new System.Drawing.Point(515, 69);
-            this.bExportPass.Name = "bExportPass";
-            this.bExportPass.Size = new System.Drawing.Size(150, 23);
-            this.bExportPass.TabIndex = 9;
-            this.bExportPass.TabStop = false;
-            this.bExportPass.Text = "Сохранить пропуск";
-            this.bExportPass.UseVisualStyleBackColor = true;
+            this.pdPass.DocumentName = "Пропуск";
+            this.pdPass.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pdPass_PrintPage);
+            // 
+            // pdPrintPass
+            // 
+            this.pdPrintPass.UseEXDialog = true;
             // 
             // fPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 450);
-            this.Controls.Add(this.bExportPass);
+            this.ClientSize = new System.Drawing.Size(677, 249);
             this.Controls.Add(this.bPrintPass);
             this.Controls.Add(this.pbBarcode);
             this.Controls.Add(this.bSave);
@@ -165,6 +165,7 @@ namespace EMSAlexander
         private System.Windows.Forms.Button bSave;
         private System.Windows.Forms.PictureBox pbBarcode;
         private System.Windows.Forms.Button bPrintPass;
-        private System.Windows.Forms.Button bExportPass;
+        private System.Drawing.Printing.PrintDocument pdPass;
+        private System.Windows.Forms.PrintDialog pdPrintPass;
     }
 }
