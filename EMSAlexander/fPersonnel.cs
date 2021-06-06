@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using BarcodeLib;
 
 namespace EMSAlexander
 {
@@ -15,51 +18,30 @@ namespace EMSAlexander
             InitializeComponent();
         }
 
-        public fPersonnel(fMain fMain)
-        {
-            InitializeComponent();
-        }
-
         private void fPersonnel_Load(object sender, EventArgs e)
         {
-            Refresh();
-        }
-
-        private void bAddPersonnel_Click(object sender, EventArgs e)
-        {
-            fPerson PersonForm = new fPerson(0, this);
-            PersonForm.ShowDialog();
-        }
-
-        private void bEditPersonnel_Click(object sender, EventArgs e)
-        {
-            fPerson PersonForm = new fPerson(long.Parse(dgvPersonnel.SelectedRows[0].Cells[1].Value.ToString()), this);
-            PersonForm.ShowDialog();
-        }
-
-        public void Refresh()
-        {
-            dgvPersonnel.Rows.Clear();
-            foreach (var i in Personnel.barcodes)
+            foreach (KeyValuePair<string, Employee> i in Personnel._personnel)
             {
-                dgvPersonnel.Rows.Add(i.Value.GetFIO(), i.Key);
+                BarcodeLib.Barcode tempBarcode = new BarcodeLib.Barcode();
+                dgvPersonnel.Rows.Add(i.Key, tempBarcode.Encode(TYPE.EAN8, i.Key, Color.Black, Color.Transparent, 300, 100), i.Value.GetLastName(), i.Value.GetFirstName(), i.Value.GetMiddleName(), i.Value.GetOrganisation());
             }
         }
 
-        private void dgvPersonnel_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void bAdd_Click(object sender, EventArgs e)
         {
-            this.bEditPersonnel_Click(sender, e);
+            fEmployee EmployeeForm = new fEmployee("");
+            EmployeeForm.ShowDialog();
         }
 
-        private void bDeletePersonnel_Click(object sender, EventArgs e)
+        private void bEdit_Click(object sender, EventArgs e)
         {
-            DialogResult dR = MessageBox.Show("Вы уверены, что хотите удалить сотрудника?", "Удаление сотрудника", MessageBoxButtons.YesNo);
-            if (dR == DialogResult.Yes)
-            {
-                Personnel.barcodes.Remove(long.Parse(dgvPersonnel.SelectedRows[0].Cells[1].Value.ToString()));
-                Personnel.SavePersonnel();
-                Refresh();
-            }
+            fEmployee EmployeeForm = new fEmployee(dgvPersonnel.CurrentRow.Cells[0].Value.ToString());
+            EmployeeForm.ShowDialog();
+        }
+
+        private void bDelete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

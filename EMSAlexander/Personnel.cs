@@ -1,119 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.IO;
+using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace EMSAlexander
 {
-    static class Personnel
+    public static class Personnel
     {
+        private static string _connectionstring;
+        public static Dictionary<string, Employee> _personnel;
 
-        static public string InTimeSetting, OutTimeSetting, OrganisationName;
-        static public Dictionary<long, Person> barcodes = new Dictionary<long, Person>();
-
-        public static void LoadPersonnel()
+        public static void Initialize(string connectionstring)
         {
-            StreamReader sr = new StreamReader("Personnel" + "\\" + "barcodes.txt");
-            while (!sr.EndOfStream)
-            {
-                string s = sr.ReadLine();
-                barcodes.Add(long.Parse(s), new Person(long.Parse(s)));
-            }
-            sr.Close();
-            foreach (Person i in barcodes.Values)
-            {
-                i.LoadAll();
-            }
-        }
-        public static void SavePersonnel()
-        {
-            foreach (Person i in barcodes.Values)
-            {
-                i.SaveAll();
-            }
+            _personnel = new Dictionary<string, Employee>();
+            _connectionstring = connectionstring;
+            SqlConnection _connector = new SqlConnection(_connectionstring);
+            SqlCommand _command = new SqlCommand();
 
-            FileStream fs = new FileStream("Personnel" + "\\" + "barcodes.txt", FileMode.Create);
-            StreamWriter sr = new StreamWriter(fs);
-            foreach (long i in Personnel.barcodes.Keys)
-            {
-                sr.WriteLine(i);
-            }
-            sr.Close();
-            fs.Close();
-        }
+            _connector.Open();
 
+            SqlTransaction _transaction = _connector.BeginTransaction();
 
-        private static string CalculatePersonTimes(string month, long barcode, string in_out, out int count)
-        {
-            count = 0;
-            Person temp = null;
-            if (in_out.Equals("in"))
+            _command.Connection = _connector;
+            _command.Transaction = _transaction;
+
+            _command.CommandText = "SELECT barcode FROM personnel";
+            SqlDataReader result = _command.ExecuteReader();
+
+            
+
+            if (result.HasRows)
             {
-                barcodes.TryGetValue(barcode, out temp);
-                foreach (DateTime t in temp.gointimes)
+                while (result.Read())
                 {
-                    if ( (t.Month.ToString().Equals(month)) && (DateTime.Parse(t.ToShortTimeString()).CompareTo(DateTime.Parse(InTimeSetting)) <= 0) )
-                    {
-                        count++;
-                    }
+                    _personnel.Add(result.GetString(0), new Employee(result.GetString(0), _connectionstring));
                 }
             }
-            else
+            _connector.Close();
+        }
+
+        public static bool TryAddField (string barcode, string lastname, string firstname, string middlename, string organisation, Schedule[] worktimes)
+        {
+            try
             {
-                if (in_out.Equals("out"))
-                {
-                    barcodes.TryGetValue(barcode, out temp);
-                    foreach (DateTime t in temp.goouttimes)
-                    {
-                        if ((t.Month.ToString().Equals(month)) && (DateTime.Parse(t.ToShortTimeString()).CompareTo(DateTime.Parse(InTimeSetting)) >= 0))
-                        {
-                            count++;
-                        }
-                    }
-                }
+                Employee newEmployee = new Employee(barcode, lastname, firstname, middlename, organisation, worktimes, _connectionstring);
             }
-            return temp.GetFIO();
-        }
-        public static Dictionary<string, int> CalculateTimes(string month, string in_out)
-        {
-            Dictionary<string, int> toReturn = new Dictionary<string, int>();
-            foreach (long i in barcodes.Keys)
+            catch (Exception e)
             {
-                string fio = "";
-                int count = 0;
-                fio = CalculatePersonTimes(month, i, in_out, out count);
-                toReturn.Add(fio, count);
+                Console.WriteLine(e.Message);
+                return false;
             }
-            return toReturn;
+            Initialize(_connectionstring);
+            return true;
         }
-
-        public static string ReturnFIO(long barcode)
-        {
-            Person toReturn = null;
-            barcodes.TryGetValue(barcode, out toReturn);
-            return toReturn.GetFIO();
-        }
-        public static void SetFIO(long barcode, string fio)
-        {
-            Person toSet = null;
-            barcodes.TryGetValue(barcode, out toSet);
-            toSet.SetFIO(fio);
-        }
-
-        public static bool IsOnWork (long barcode)
-        {
-            Person toReturn = null;
-            barcodes.TryGetValue(barcode, out toReturn);
-            return toReturn.IsOnWork();
-        }
-        public static void ChangeWorkStatus (long barcode)
-        {
-            Person toSet = null;
-            barcodes.TryGetValue(barcode, out toSet);
-            toSet.ChangeWorkStatus();
-        }
-
-
-
     }
 }

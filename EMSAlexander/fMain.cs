@@ -7,111 +7,69 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace EMSAlexander
 {
     public partial class fMain : Form
     {
+
+        public string _barcode;
         public fMain()
         {
             InitializeComponent();
+            while (!(Settings.Initialize()))
+            {
+                MessageBox.Show("Произошла ошибка доступа к SQL-серверу. Обновите настройки программы или перезапустите её.", "Ошибка!");
+                fSettings SettingsForm = new fSettings();
+                SettingsForm.ShowDialog();
+            }
+            Personnel.Initialize(Settings._connectionstring);
         }
 
-
-        private void tTimer_Tick(object sender, EventArgs e)
+        private void tSecondTick_Tick(object sender, EventArgs e)
         {
-            lCurrentDate.Text = DateTime.Now.ToLongDateString();
-            lCurrentTime.Text = DateTime.Now.ToLongTimeString();
-            /*if (DateTime.Now.ToShortTimeString().Equals("23:58:00"))
+            lDateTime.Text = DateTime.Now.ToString();
+        }
+
+        private void fMain_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            // record keystroke
+            _barcode += e.KeyChar;
+            // process barcode
+            if (_barcode.Length == 8)
             {
-                ExportReport(Application.StartupPath, "Midnight" + DateTime.Now.ToShortDateString());
-            }*/
+                MessageBox.Show(_barcode);
+                _barcode = "";
+            }
+        }
+
+        private void tsmiExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         private void fMain_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = tbBarcode;
-            Personnel.LoadPersonnel();
-            FileStream fs = new FileStream("Settings.stg", FileMode.Open);
-            StreamReader sr = new StreamReader(fs);
-            Personnel.InTimeSetting = sr.ReadLine();
-            Personnel.OutTimeSetting = sr.ReadLine();
-            Personnel.OrganisationName = sr.ReadLine();
-            sr.Close();
-            fs.Close();
-            //sfdExport.Filter = "Файл учёта рабочего времени | *.txt";
-        }
-
-        private void tbBarcode_TextChanged(object sender, EventArgs e)
-        {
-            if (tbBarcode.Text.Length == 8)
+            
+            /*foreach (KeyValuePair<string, Employee> i in Personnel._personnel)
             {
-                Person DatetimeSet = null;
-                dgvVisitList.Rows.Add();
-                dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[0].Value = Personnel.ReturnFIO(long.Parse(tbBarcode.Text));
-                if (Personnel.IsOnWork(long.Parse(tbBarcode.Text)))
-                {
-                    dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[2].Value = DateTime.Now.ToShortTimeString();
-                    Personnel.barcodes.TryGetValue(long.Parse(tbBarcode.Text), out DatetimeSet);
-                    DatetimeSet.AddDate("out", DateTime.Now);
-                    Personnel.ChangeWorkStatus(long.Parse(tbBarcode.Text));
-                }
-                else
-                {
-                    dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[1].Value = DateTime.Now.ToShortTimeString();
-                    Personnel.barcodes.TryGetValue(long.Parse(tbBarcode.Text), out DatetimeSet);
-                    DatetimeSet.AddDate("in", DateTime.Now);
-                    Personnel.ChangeWorkStatus(long.Parse(tbBarcode.Text));
-                }
-                dgvVisitList.Rows[dgvVisitList.RowCount - 1].Cells[3].Value = DateTime.Now.ToShortDateString();
-                tbBarcode.Clear();
-            }
-        }
-
-
-        private void fMain_KeyDown(object sender, KeyEventArgs e)
-        {
-            /*if (e.Control && e.KeyCode == Keys.E)
-            {
-                sfdExport.ShowDialog();
-                ExportReport(sfdExport.FileName);
+                dgvActivityList.Rows.Insert(0, i.Value.GetLastName(), i.Value.GetFirstName(), i.Value.GetMiddleName(), i.Value.GetOrganisation());
             }*/
-            if (e.Control && e.KeyCode == Keys.E)
-            {
-                fReport ExportForm = new fReport();
-                ExportForm.ShowDialog();
-            }
-            if (e.Control && e.KeyCode == Keys.S)
-            {
-                fSettings SettingsForm = new fSettings(this);
-                SettingsForm.ShowDialog();
-            }
-            if (e.Control && e.KeyCode == Keys.P)
-            {
-                fPersonnel PersonnelForm = new fPersonnel(this);
-                PersonnelForm.ShowDialog();
-            }
         }
 
-        private void ExportReport(string filename)
+        private void tsmiPersonnel_Click(object sender, EventArgs e)
         {
-            StreamWriter swExport = new StreamWriter(filename);
-            foreach (DataGridViewRow row in dgvVisitList.Rows)
-            {
-                swExport.WriteLine(row.Cells[0].Value + "@@" + row.Cells[1].Value + "@@" + row.Cells[2].Value);
-            }
-            swExport.Close();
+            fPersonnel PersonnelForm = new fPersonnel();
+            PersonnelForm.ShowDialog();
+            PersonnelForm.Dispose();
         }
 
-        private void ExportReport(string directory, string filename)
+        private void tsmiSettings_Click(object sender, EventArgs e)
         {
-            ExportReport(directory + "\"" + filename);
-        }
-
-        private void fMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Personnel.SavePersonnel();
+            fSettings SettingsForm = new fSettings();
+            SettingsForm.ShowDialog();
+            SettingsForm.Dispose();
         }
     }
 }

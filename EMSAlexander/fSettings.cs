@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -11,36 +13,43 @@ namespace EMSAlexander
 {
     public partial class fSettings : Form
     {
-        public fSettings(fMain mainForm)
+        public fSettings()
         {
             InitializeComponent();
         }
 
-        private void fSettings_Load(object sender, EventArgs e)
-        {
-            dtpInTime.Format = DateTimePickerFormat.Custom;
-            dtpInTime.CustomFormat = "HH:mm";
-            dtpOutTime.Format = DateTimePickerFormat.Custom;
-            dtpOutTime.CustomFormat = "HH:mm";
-            //FileStream fs = new FileStream("Settings.stg", FileMode.Open);
-            //StreamReader sr = new StreamReader(fs);
-            dtpInTime.Value = DateTime.Parse(Personnel.InTimeSetting);
-            dtpOutTime.Value = DateTime.Parse(Personnel.OutTimeSetting);
-            tbOrganisationName.Text = Personnel.OrganisationName;
-        }
-
         private void bSave_Click(object sender, EventArgs e)
         {
-            FileStream fs = new FileStream("settings.stg", FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
-            Personnel.InTimeSetting = dtpInTime.Value.ToShortTimeString();
-            Personnel.OutTimeSetting = dtpOutTime.Value.ToShortTimeString();
-            Personnel.OrganisationName = tbOrganisationName.Text;
-            sw.WriteLine(Personnel.InTimeSetting);
-            sw.WriteLine(Personnel.OutTimeSetting);
-            sw.WriteLine(Personnel.OrganisationName);
-            sw.Close();
-            fs.Close();
+            if (!(String.IsNullOrEmpty(tbServerName.Text)) && !(String.IsNullOrEmpty(tbPort.Text)) && !(String.IsNullOrEmpty(tbDatabaseName.Text)) && !(String.IsNullOrEmpty(tbUserName.Text)))
+            {
+                FileStream fs = new FileStream("Settings.stg", FileMode.Create);
+                StreamWriter sw = new StreamWriter(fs);
+                sw.Write($"{tbServerName.Text}\r{tbPort.Text}\r{tbDatabaseName.Text}\r{tbUserName.Text}\r{tbPassword.Text}\r");
+                sw.Close();
+                fs.Close();
+            }
+            else
+            {
+                MessageBox.Show("Введены не все данные", "Ошибка!", MessageBoxButtons.OK);
+            }
+            this.Close();
+        }
+
+        private void bCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void fSettings_Load(object sender, EventArgs e)
+        {
+            if (Settings.Initialize())
+            {
+                tbServerName.Text = Settings._serverAdress;
+                tbPort.Text = Settings._port;
+                tbDatabaseName.Text = Settings._databaseName;
+                tbUserName.Text = Settings._username;
+                tbPassword.Text = Settings._password;
+            }
         }
     }
 }

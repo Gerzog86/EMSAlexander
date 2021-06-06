@@ -29,94 +29,152 @@ namespace EMSAlexander
         /// </summary>
         private void InitializeComponent()
         {
-            this.dtpInTime = new System.Windows.Forms.DateTimePicker();
-            this.lInTime = new System.Windows.Forms.Label();
-            this.bSave = new System.Windows.Forms.Button();
-            this.lOutTime = new System.Windows.Forms.Label();
-            this.dtpOutTime = new System.Windows.Forms.DateTimePicker();
+            this.tbServerName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbOrganisationName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbPort = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbDatabaseName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbUserName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.bSave = new System.Windows.Forms.Button();
+            this.bCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // dtpInTime
+            // tbServerName
             // 
-            this.dtpInTime.CustomFormat = "HH:mm";
-            this.dtpInTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpInTime.Location = new System.Drawing.Point(263, 24);
-            this.dtpInTime.Name = "dtpInTime";
-            this.dtpInTime.ShowUpDown = true;
-            this.dtpInTime.Size = new System.Drawing.Size(201, 23);
-            this.dtpInTime.TabIndex = 0;
-            // 
-            // lInTime
-            // 
-            this.lInTime.AutoSize = true;
-            this.lInTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lInTime.Location = new System.Drawing.Point(12, 24);
-            this.lInTime.Name = "lInTime";
-            this.lInTime.Size = new System.Drawing.Size(210, 21);
-            this.lInTime.TabIndex = 1;
-            this.lInTime.Text = "Время начала рабочего дня";
-            // 
-            // bSave
-            // 
-            this.bSave.Location = new System.Drawing.Point(485, 24);
-            this.bSave.Name = "bSave";
-            this.bSave.Size = new System.Drawing.Size(246, 22);
-            this.bSave.TabIndex = 2;
-            this.bSave.Text = "Сохранить настройки";
-            this.bSave.UseVisualStyleBackColor = true;
-            this.bSave.Click += new System.EventHandler(this.bSave_Click);
-            // 
-            // lOutTime
-            // 
-            this.lOutTime.AutoSize = true;
-            this.lOutTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lOutTime.Location = new System.Drawing.Point(12, 64);
-            this.lOutTime.Name = "lOutTime";
-            this.lOutTime.Size = new System.Drawing.Size(238, 21);
-            this.lOutTime.TabIndex = 4;
-            this.lOutTime.Text = "Время окончания рабочего дня";
-            // 
-            // dtpOutTime
-            // 
-            this.dtpOutTime.CustomFormat = "HH:mm";
-            this.dtpOutTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpOutTime.Location = new System.Drawing.Point(263, 64);
-            this.dtpOutTime.Name = "dtpOutTime";
-            this.dtpOutTime.ShowUpDown = true;
-            this.dtpOutTime.Size = new System.Drawing.Size(201, 23);
-            this.dtpOutTime.TabIndex = 3;
+            this.tbServerName.Font = new System.Drawing.Font("a_FuturaRound", 14.25F);
+            this.tbServerName.Location = new System.Drawing.Point(6, 34);
+            this.tbServerName.Name = "tbServerName";
+            this.tbServerName.Size = new System.Drawing.Size(268, 31);
+            this.tbServerName.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 105);
+            this.label1.Font = new System.Drawing.Font("a_FuturaRound", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 21);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Название организации";
+            this.label1.Size = new System.Drawing.Size(234, 22);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Имя или IP-адрес сервера";
             // 
-            // tbOrganisationName
+            // label2
             // 
-            this.tbOrganisationName.Location = new System.Drawing.Point(263, 107);
-            this.tbOrganisationName.Name = "tbOrganisationName";
-            this.tbOrganisationName.Size = new System.Drawing.Size(201, 23);
-            this.tbOrganisationName.TabIndex = 7;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("a_FuturaRound", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(12, 68);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(220, 22);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Порт (по умочанию 3306)";
+            // 
+            // tbPort
+            // 
+            this.tbPort.Font = new System.Drawing.Font("a_FuturaRound", 14.25F);
+            this.tbPort.Location = new System.Drawing.Point(6, 93);
+            this.tbPort.Name = "tbPort";
+            this.tbPort.Size = new System.Drawing.Size(268, 31);
+            this.tbPort.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("a_FuturaRound", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(12, 127);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(210, 22);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Название базы данных";
+            // 
+            // tbDatabaseName
+            // 
+            this.tbDatabaseName.Font = new System.Drawing.Font("a_FuturaRound", 14.25F);
+            this.tbDatabaseName.Location = new System.Drawing.Point(6, 152);
+            this.tbDatabaseName.Name = "tbDatabaseName";
+            this.tbDatabaseName.Size = new System.Drawing.Size(268, 31);
+            this.tbDatabaseName.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("a_FuturaRound", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(12, 186);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(163, 22);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Имя пользователя";
+            // 
+            // tbUserName
+            // 
+            this.tbUserName.Font = new System.Drawing.Font("a_FuturaRound", 14.25F);
+            this.tbUserName.Location = new System.Drawing.Point(6, 211);
+            this.tbUserName.Name = "tbUserName";
+            this.tbUserName.Size = new System.Drawing.Size(268, 31);
+            this.tbUserName.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("a_FuturaRound", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(12, 245);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 22);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Пароль";
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Font = new System.Drawing.Font("a_FuturaRound", 14.25F);
+            this.tbPassword.Location = new System.Drawing.Point(6, 270);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(268, 31);
+            this.tbPassword.TabIndex = 11;
+            // 
+            // bSave
+            // 
+            this.bSave.Font = new System.Drawing.Font("a_FuturaRound", 14.25F);
+            this.bSave.Location = new System.Drawing.Point(302, 34);
+            this.bSave.Name = "bSave";
+            this.bSave.Size = new System.Drawing.Size(123, 31);
+            this.bSave.TabIndex = 13;
+            this.bSave.Text = "Сохранить";
+            this.bSave.UseVisualStyleBackColor = true;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
+            // 
+            // bCancel
+            // 
+            this.bCancel.Font = new System.Drawing.Font("a_FuturaRound", 14.25F);
+            this.bCancel.Location = new System.Drawing.Point(302, 93);
+            this.bCancel.Name = "bCancel";
+            this.bCancel.Size = new System.Drawing.Size(123, 31);
+            this.bCancel.TabIndex = 14;
+            this.bCancel.Text = "Отмена";
+            this.bCancel.UseVisualStyleBackColor = true;
+            this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
             // 
             // fSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(746, 450);
-            this.Controls.Add(this.tbOrganisationName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lOutTime);
-            this.Controls.Add(this.dtpOutTime);
+            this.ClientSize = new System.Drawing.Size(443, 321);
+            this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bSave);
-            this.Controls.Add(this.lInTime);
-            this.Controls.Add(this.dtpInTime);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tbPassword);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.tbUserName);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tbDatabaseName);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbPort);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tbServerName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "fSettings";
             this.Text = "fSettings";
             this.Load += new System.EventHandler(this.fSettings_Load);
@@ -127,12 +185,17 @@ namespace EMSAlexander
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dtpInTime;
-        private System.Windows.Forms.Label lInTime;
-        private System.Windows.Forms.Button bSave;
-        private System.Windows.Forms.Label lOutTime;
-        private System.Windows.Forms.DateTimePicker dtpOutTime;
+        private System.Windows.Forms.TextBox tbServerName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbOrganisationName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbPort;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbDatabaseName;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbUserName;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.Button bSave;
+        private System.Windows.Forms.Button bCancel;
     }
 }
